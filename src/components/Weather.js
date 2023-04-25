@@ -25,16 +25,18 @@ const Weather = () => {
             <input className='search' type='text' placeholder='Enter a city' value={cityName} onChange={(e)=>setCityName(e.target.value)} onBlur={handleSearch}/>
             {/* <button type='button' onClick={handleSearch}>Search</button> */}
         </form>
+        <div className='weather'>
         {
             (weatherData!==undefined)
-            ?<div className='weather'>
+            ?<>
                 <p>{weatherData.name}</p>
                 <h1>{Math.round((weatherData.main.temp-273.15)*(9/5)+32)}°F</h1>
                 <p>{weatherData.weather[0].description}</p>
                 <img src={`https://openweathermap.org/img/wn/${weatherData.weather[0].icon}@2x.png`} alt="weather_img"/>
-            </div>
+            </>
             :""
         }
+        </div>
     </div>
   )
 }
