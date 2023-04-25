@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Axios from 'axios'
 
 const key="2f21fa30b1082fee9e850a9b52541b90";
@@ -15,13 +15,16 @@ const Weather = () => {
         .then((res)=>{
             console.log(res);
             setWeatherData(res.data);
-            setCityName("");
+            // setCityName("");
         })
     }
+    useEffect(()=>{
+        handleSearch();
+    },[cityName])
   return (
     <div>
         <form>
-            <input className='search' type='text' placeholder='Enter a city' value={cityName} onChange={(e)=>setCityName(e.target.value)} onBlur={handleSearch}/>
+            <input className='search' type='text' placeholder='Enter a city' value={cityName} onChange={(e)=>setCityName(e.target.value)} />
             {/* <button type='button' onClick={handleSearch}>Search</button> */}
         </form>
         {
